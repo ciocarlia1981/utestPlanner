@@ -1,9 +1,9 @@
-__author__ = 'Jonathan'
 
 import requests
 
-#nothing to say here
-
+# TODO: Add user types to code
+# TODO: Allow for tentative cities in a particular country or region
+# TODO:
 
 def convertCurrency(amount, toCurrency):
     try:
@@ -26,7 +26,7 @@ def convertCurrency(amount, toCurrency):
 
 
 class Project:
-    price = 0 # in USD
+    price = 150 # in USD
     tasks = [] #all project tasks
     duration = 0 #total project duration
 
@@ -41,24 +41,31 @@ class Task:
         print "Adding task"
 
     def getPrice(self):
-        return self.price
+        print "My price is:", self.price
 
     def getDuration(self):
         return self.duration
 
 ####
 class UsabilityTest(Task):
-    includeTraining = False
-    userGroups = []
-    def __init__(self):
-        print "Adding usability test"
+    def __init__(self, includeTraining=False, userGroups=[], locations=[], prepareMemo = False, reportFormat = "PPT", submitToIRB=False, submitToFDA=False, recruitExtra = True, conductPilot = False):
+        self.includeTraining = includeTraining
+        self.userGroups = userGroups
+        self.locations = locations
+        self.prepareMemo = prepareMemo
+        self.reportFormat = reportFormat
+        self.submitToIRB = submitToIRB
+        self.submitToFDA = submitToFDA
+        self.recruitExtra = recruitExtra
+        self.conductPilot = conductPilot
+
 
     def addUserGroup(self, userGroup):
         self.userGroups.append(userGroup)
 
 ####
 class FormativeUsabilityTest(UsabilityTest):
-    def __init__(self):
+    def whatAmI(self):
         print "Adding formative usability test"
 
 class UserGroup:
@@ -70,7 +77,29 @@ class UserGroup:
         self.sessionDuration = sessionDuration # in minutes
         print "Added user group"
 
+class Location:
+    def __init__(self,city, state="MA", country="US", type="usability lab", pricePerDay=500):
+        self.city = city
+        self.country = country
+        self.state = state
+        self.type = type
+        self.pricePerDay = pricePerDay
+    def __repr__(self):
+        return "LocationObj: " + " ".join([self.city, self.country, self.type, str(self.pricePerDay)])
 
 usabilityTest = FormativeUsabilityTest()
+
+concordLab = Location("Concord")
+schlesinger = Location("Boston", type="market research facility", pricePerDay=1500)
+
+labs = []
+
+labs.append(concordLab)
+labs.append(schlesinger)
+
+print labs
+
+for lab in labs:
+    print lab
 
 usabilityTest.getPrice()
