@@ -3,7 +3,7 @@ import requests
 
 # TODO: Add user types to code
 # TODO: Allow for tentative cities in a particular country or region
-# TODO:
+# TODO: added a todo item
 
 def convertCurrency(amount, toCurrency):
     try:
