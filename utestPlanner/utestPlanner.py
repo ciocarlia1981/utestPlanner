@@ -59,6 +59,14 @@ class UsabilityTest(Task):
         self.recruitExtra = recruitExtra
         self.conductPilot = conductPilot
 
+    def calculateExpenses(self):
+        self.expenses = 0
+        pass
+
+    def calculateLabor(self):
+        self.laborPrice = 0
+        pass
+
 
     def addUserGroup(self, userGroup):
         self.userGroups.append(userGroup)
