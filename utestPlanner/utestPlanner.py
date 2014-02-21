@@ -3,59 +3,61 @@ import requests
 
 # TODO: Add user types to code
 # TODO: Allow for tentative cities in a particular country or region
-# TODO: added a todo item
 
-def convertCurrency(amount, toCurrency):
+
+def convert_currency(amount, to_currency):
     try:
-        fromCurrency = "USD"
-        toCurrency = toCurrency
+        from_currency = "USD"
+        to_currency = to_currency
         amount = amount
 
-        url = ('http://rate-exchange.appspot.com/currency?from=%s&to=%s&q=1') % (fromCurrency, toCurrency)
+        url = ('http://rate-exchange.appspot.com/currency?from=%s&to=%s&q=1') % (from_currency, to_currency)
 
         request = requests.get(url)
-        conversionRate = request.json()['v']
-        convertedAmount = amount * conversionRate
+        conversion_rate = request.json()['v']
+        converted_amount = amount * conversion_rate
 
-        return convertedAmount
+        return converted_amount
 
     except Exception as error:
         print "can't convert currency"
         return "XXX"
 
 
-
 class Project:
-    price = 150 # in USD
-    tasks = [] #all project tasks
-    duration = 0 #total project duration
+    price = 150  # in USD
+    tasks = []  # all project tasks
+    duration = 0  # total project duration
 
     def __init__(self):
         print "Adding project"
 
+
 ####
 class Task:
-    price = 0 #in USD
-    duration = 0 #in working days
+    price = 0 # in USD
+    duration = 0 # in working days
+
     def __init__(self):
         print "Adding task"
 
-    def getPrice(self):
+    def get_price(self):
         print "My price is:", self.price
 
-    def getDuration(self):
+    def get_duration(self):
         return self.duration
+
 
 ####
 class UsabilityTest(Task):
-    def __init__(self, includeTraining=False, userGroups=[], locations=[], prepareMemo = False, reportFormat = "PPT", submitToIRB=False, submitToFDA=False, recruitExtra = True, conductPilot = False):
-        self.includeTraining = includeTraining
-        self.userGroups = userGroups
+    def __init__(self, include_training=False, user_groups=[], locations=[], prepare_memo = False, report_format = "PPT", submit_to_IRB=False, submit_to_FDA=False, recruitExtra = True, conductPilot = False):
+        self.includeTraining = include_training
+        self.userGroups = user_groups
         self.locations = locations
-        self.prepareMemo = prepareMemo
-        self.reportFormat = reportFormat
-        self.submitToIRB = submitToIRB
-        self.submitToFDA = submitToFDA
+        self.prepareMemo = prepare_memo
+        self.reportFormat = report_format
+        self.submitToIRB = submit_to_IRB
+        self.submitToFDA = submit_to_FDA
         self.recruitExtra = recruitExtra
         self.conductPilot = conductPilot
 
@@ -110,4 +112,4 @@ print labs
 for lab in labs:
     print lab
 
-usabilityTest.getPrice()
+usabilityTest.get_price()
