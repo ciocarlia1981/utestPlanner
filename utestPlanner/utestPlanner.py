@@ -50,7 +50,7 @@ class Task:
 
 ####
 class UsabilityTest(Task):
-    def __init__(self, include_training=False, user_groups=[], locations=[], team_members=[], prepare_memo = False, report_format = "PPT", submit_to_IRB=False, submit_to_FDA=False, recruit_extra = True, conduct_pilot = False):
+    def __init__(self, include_training=False, test_plan_complexity=2, user_groups=[], locations=[], team_members=[], prepare_memo = False, report_format = "PPT", submit_to_IRB=False, submit_to_FDA=False, recruit_extra = True, conduct_pilot = False):
         self.include_training = include_training
         self.user_groups = user_groups
         self.locations = locations
@@ -61,6 +61,7 @@ class UsabilityTest(Task):
         self.recruit_extra = recruit_extra
         self.conduct_pilot = conduct_pilot
         self.team_members = team_members
+        self.test_plan_complexity = test_plan_complexity
 
     def calculate_expenses(self):
         self.expenses = 0
@@ -70,14 +71,15 @@ class UsabilityTest(Task):
         self.test_planning_price = calculate_test_planning(self)
         self.test_conduct_price = self.calculate_test_conduct_labor()
 
+    def calculate_test_planning_labor(self):
+        switch
+
     def calculate_test_conduct_labor(self):
         labor_price = 0
         for group in self.user_groups:
             for member in self.team_members:
                 duration_in_hours = group.session_duration / 60
-                labor_price = labor_price + (member.rate * group.num_participants * duration_in_hours)
-
-
+                labor_price += member.rate * group.num_participants * duration_in_hours
 
         print "The labor price for conducting the test is: ", labor_price
         return labor_price
